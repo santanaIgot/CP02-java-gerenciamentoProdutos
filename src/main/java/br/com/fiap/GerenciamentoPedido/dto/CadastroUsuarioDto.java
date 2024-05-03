@@ -4,6 +4,6 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public record CadastroUsuarioDto(String nome, String cpf, String email,
-                                 Long telefone,LocalDate dataNascismento) {
+                                 String telefone,LocalDate dataNascimento) {
 
 }

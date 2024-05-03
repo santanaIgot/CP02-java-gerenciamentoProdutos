@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public record DetalhesUsuarioDto(Long idUsuario,Long idDetalhesUsuario, String nome, String cpf,String email,
-                                 Long telefone, LocalDate dataNascismento ) {
+                                 String telefone, LocalDate dataNascimento ) {
     public DetalhesUsuarioDto(Usuario usuario){
         this(usuario.getIdUsuario(),
                 usuario.getDetalhesUsuario().getIdDetalhesUsuario(),
