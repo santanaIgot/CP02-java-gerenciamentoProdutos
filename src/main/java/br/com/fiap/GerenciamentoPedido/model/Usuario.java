@@ -24,7 +24,7 @@ public class Usuario {
     @Column(name = "cpf_usuario", nullable = false, length = 11)
     private String cpf;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.MERGE)
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private DetalhesUsuario detalhesUsuario;
 
     public Usuario (CadastroUsuarioDto dto){
