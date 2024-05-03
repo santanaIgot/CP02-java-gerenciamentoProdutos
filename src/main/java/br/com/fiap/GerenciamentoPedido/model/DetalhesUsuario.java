@@ -24,7 +24,7 @@ public class DetalhesUsuario {
     private Long idDetalhesUsuario;
 
     @Column(name = "nm_telefone", nullable = false, length = 9)
-    private Long telefone;
+    private String telefone;
 
     @Column(name = "email", nullable = false, length = 32)
     private String email;
@@ -37,9 +37,9 @@ public class DetalhesUsuario {
     private Usuario usuario;
 
     public DetalhesUsuario(CadastroUsuarioDto dto) {
-        idDetalhesUsuario = dto.idDetalhesUsuario();
+
         telefone = dto.telefone();
         email = dto.email();
-        dataNascimento = dto.dataNascismento();
+        dataNascimento = dto.dataNascimento();
     }
 }
