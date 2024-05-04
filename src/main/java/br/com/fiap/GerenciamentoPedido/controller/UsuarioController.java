@@ -1,5 +1,6 @@
 package br.com.fiap.GerenciamentoPedido.controller;
 
+import br.com.fiap.GerenciamentoPedido.dto.AtualizacaoUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.dto.CadastroUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.dto.DetalhesUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.model.Usuario;
@@ -48,5 +49,22 @@ public class UsuarioController {
     public ResponseEntity<DetalhesUsuarioDto> pesquisar(@PathVariable("id") Long idUsuario){
         var usuario = usuarioRepository.getReferenceById(idUsuario);
         return ResponseEntity.ok(new DetalhesUsuarioDto(usuario));
+    }
+
+    @PutMapping("{id}")
+    @Transactional
+    public ResponseEntity<DetalhesUsuarioDto> put (@PathVariable("id") Long idUsuario,
+                                                   @RequestBody AtualizacaoUsuarioDto dto){
+        var usuario = usuarioRepository.getReferenceById(idUsuario);
+        usuario.atualizaDados(dto);
+
+        return ResponseEntity.ok(new DetalhesUsuarioDto(usuario));
+    }
+
+    @DeleteMapping("{id}")
+    @Transactional
+    public ResponseEntity<Void> remover(@PathVariable("id") Long idUsuario){
+        usuarioRepository.deleteById(idUsuario);
+        return ResponseEntity.noContent().build();
     }
 }

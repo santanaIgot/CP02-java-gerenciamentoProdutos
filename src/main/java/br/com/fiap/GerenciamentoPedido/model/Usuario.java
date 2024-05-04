@@ -1,6 +1,7 @@
 package br.com.fiap.GerenciamentoPedido.model;
 
 
+import br.com.fiap.GerenciamentoPedido.dto.AtualizacaoUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.dto.CadastroUsuarioDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -32,5 +33,19 @@ public class Usuario {
         cpf = dto.cpf();
         detalhesUsuario = new DetalhesUsuario(dto);
         detalhesUsuario.setUsuario(this);
+    }
+
+    public void atualizaDados(AtualizacaoUsuarioDto dto){
+        if(dto.nome() != null)
+            nome = dto.nome();
+        if(dto.cpf() != null)
+            cpf = dto.cpf();
+        if(dto.email() != null)
+            this.detalhesUsuario.setEmail(dto.email());
+        if(dto.dataNascimento() != null)
+            this.detalhesUsuario.setDataNascimento(dto.dataNascimento());
+        if(dto.telefone() != null)
+            this.detalhesUsuario.setTelefone(dto.telefone());
+
     }
 }
