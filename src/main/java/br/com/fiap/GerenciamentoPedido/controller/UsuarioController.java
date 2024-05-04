@@ -35,4 +35,11 @@ public class UsuarioController {
         var lista = usuarioRepository.findAll(pageable).stream().map(DetalhesUsuarioDto::new).toList();
         return ResponseEntity.ok(lista);
     }
+
+
+    //get listar
+    public ResponseEntity<List<DetalhesUsuarioDto>> listar(){
+        var listaUsuario = usuarioRepository.findAll().stream().map(DetalhesUsuarioDto::new).toList();
+        return ResponseEntity.ok(listaUsuario);
+    }
 }
