@@ -1,4 +1,4 @@
-package br.com.fiap.GerenciamentoPedido.dto;
+package br.com.fiap.GerenciamentoPedido.dto.usuario;
 
 import java.time.LocalDate;
 import java.util.Date;

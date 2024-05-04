@@ -1,15 +1,13 @@
 package br.com.fiap.GerenciamentoPedido.model;
 
-import br.com.fiap.GerenciamentoPedido.dto.CadastroUsuarioDto;
+import br.com.fiap.GerenciamentoPedido.dto.usuario.CadastroUsuarioDto;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter@Setter
 @NoArgsConstructor

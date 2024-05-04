@@ -1,4 +1,4 @@
-package br.com.fiap.GerenciamentoPedido.dto;
+package br.com.fiap.GerenciamentoPedido.dto.usuario;
 
 import br.com.fiap.GerenciamentoPedido.model.Usuario;
 

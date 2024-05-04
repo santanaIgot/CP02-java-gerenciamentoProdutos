@@ -1,8 +1,8 @@
 package br.com.fiap.GerenciamentoPedido.controller;
 
-import br.com.fiap.GerenciamentoPedido.dto.AtualizacaoUsuarioDto;
-import br.com.fiap.GerenciamentoPedido.dto.CadastroUsuarioDto;
-import br.com.fiap.GerenciamentoPedido.dto.DetalhesUsuarioDto;
+import br.com.fiap.GerenciamentoPedido.dto.usuario.AtualizacaoUsuarioDto;
+import br.com.fiap.GerenciamentoPedido.dto.usuario.CadastroUsuarioDto;
+import br.com.fiap.GerenciamentoPedido.dto.usuario.DetalhesUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.model.Usuario;
 import br.com.fiap.GerenciamentoPedido.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;

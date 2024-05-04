@@ -1,8 +1,8 @@
 package br.com.fiap.GerenciamentoPedido.model;
 
 
-import br.com.fiap.GerenciamentoPedido.dto.AtualizacaoUsuarioDto;
-import br.com.fiap.GerenciamentoPedido.dto.CadastroUsuarioDto;
+import br.com.fiap.GerenciamentoPedido.dto.usuario.AtualizacaoUsuarioDto;
+import br.com.fiap.GerenciamentoPedido.dto.usuario.CadastroUsuarioDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
