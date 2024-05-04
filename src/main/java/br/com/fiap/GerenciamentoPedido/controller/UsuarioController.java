@@ -42,4 +42,11 @@ public class UsuarioController {
         var listaUsuario = usuarioRepository.findAll().stream().map(DetalhesUsuarioDto::new).toList();
         return ResponseEntity.ok(listaUsuario);
     }
+
+    //pesquisa por id
+    @GetMapping("{id}")
+    public ResponseEntity<DetalhesUsuarioDto> pesquisar(@PathVariable("id") Long idUsuario){
+        var usuario = usuarioRepository.getReferenceById(idUsuario);
+        return ResponseEntity.ok(new DetalhesUsuarioDto(usuario));
+    }
 }
