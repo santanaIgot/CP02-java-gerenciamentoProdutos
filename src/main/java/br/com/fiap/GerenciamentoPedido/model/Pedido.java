@@ -21,10 +21,12 @@ public class Pedido {
     private Long id;
     @Column(name = "valor_pedido", nullable = false)
     private Double valorPedido;
+    @Column(name = "nm_pedido", nullable = false, length = 100)
+    private String nome;
     @Column(name = "dt_pedido", nullable = false)
     private LocalDate dataPedido;
     @Column(name = "st_pedido", nullable = false)
-    private  String st_pedido;
+    private  String statusPedido;
     @Column(name = "desc_pedio", nullable = false, length = 100)
     private String descricao;
 
@@ -32,10 +34,11 @@ public class Pedido {
     @JoinColumn(name = "cd_usuario", nullable = false)
     private Usuario usuario;
 
-    public Pedido(CadastroPedidoDto dto){
+    public Pedido(CadastroPedidoDto dto, Usuario usuario){
         valorPedido = dto.valorPedido();
+        nome = dto.nome();
         dataPedido = dto.dataPedido();
-        st_pedido = dto.st_pedido();
+        statusPedido = dto.statusPedido();
         descricao = dto.descricao();
         this.usuario = usuario;
     }
