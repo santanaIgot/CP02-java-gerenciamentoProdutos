@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter@Setter
@@ -16,7 +17,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "TB_USUARIO")
-@EntityListeners(AuditingEntityListener.class)
 public class Usuario {
     @GeneratedValue
     @Id
@@ -32,14 +32,15 @@ public class Usuario {
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private DetalhesUsuario detalhesUsuario;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Pedido> pedidos;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
+    private List<Pedido> pedidos = new ArrayList<>() ;
 
     public Usuario (CadastroUsuarioDto dto){
         nome = dto.nome();
         cpf = dto.cpf();
         detalhesUsuario = new DetalhesUsuario(dto);
         detalhesUsuario.setUsuario(this);
+        pedidos = new ArrayList<>();
     }
 
     public void atualizaDados(AtualizacaoUsuarioDto dto){
@@ -55,4 +56,11 @@ public class Usuario {
             this.detalhesUsuario.setTelefone(dto.telefone());
 
     }
+
+
+    public void adicionar(Pedido pedido){
+        pedidos.add(pedido);
+        pedido.setUsuario(this);
+    }
+
 }

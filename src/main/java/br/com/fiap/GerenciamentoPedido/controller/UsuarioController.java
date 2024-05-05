@@ -7,6 +7,7 @@ import br.com.fiap.GerenciamentoPedido.dto.usuario.CadastroUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.dto.usuario.DetalhesUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.model.Pedido;
 import br.com.fiap.GerenciamentoPedido.model.Usuario;
+import br.com.fiap.GerenciamentoPedido.repository.PedidoRepository;
 import br.com.fiap.GerenciamentoPedido.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -24,6 +25,9 @@ import java.util.List;
 public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private PedidoRepository pedidoRepository;
     @PostMapping
     @Transactional
     public ResponseEntity<DetalhesUsuarioDto> post(@RequestBody @Valid CadastroUsuarioDto dto, UriComponentsBuilder uriBuilder){
@@ -79,8 +83,12 @@ public class UsuarioController {
                                                   UriComponentsBuilder uriBuilder){
         var usuario = usuarioRepository.getReferenceById(idUsuario);
         var pedido = new Pedido(dto,usuario);
+        usuario.adicionar(pedido);
         var uri = uriBuilder.path("pedido/{id}").buildAndExpand(pedido.getId()).toUri();
         return ResponseEntity.created(uri).body(new DetalhesPedidoDto(pedido));
     }
+
+
+
 
 }

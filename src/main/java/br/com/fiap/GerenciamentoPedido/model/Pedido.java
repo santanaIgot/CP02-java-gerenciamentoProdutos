@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 
@@ -13,26 +14,35 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "TB_PEDIDO")
+@EntityListeners(AuditingEntityListener.class)
 public class Pedido {
 
-    @Id
     @GeneratedValue
+    @Id
     @Column(name = "cd_pedido", nullable = false)
     private Long id;
+
     @Column(name = "valor_pedido", nullable = false)
     private Double valorPedido;
+
     @Column(name = "nm_pedido", nullable = false, length = 100)
     private String nome;
+
     @Column(name = "dt_pedido", nullable = false)
     private LocalDate dataPedido;
+
     @Column(name = "st_pedido", nullable = false)
     private  String statusPedido;
-    @Column(name = "desc_pedio", nullable = false, length = 100)
+
+    @Column(name = "desc_pedido", nullable = false, length = 100)
     private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "cd_usuario", nullable = false)
     private Usuario usuario;
+
+
+
 
     public Pedido(CadastroPedidoDto dto, Usuario usuario){
         valorPedido = dto.valorPedido();
