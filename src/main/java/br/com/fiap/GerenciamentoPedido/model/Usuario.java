@@ -7,12 +7,16 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.util.List;
 
 @Getter@Setter
 @NoArgsConstructor
 
 @Entity
 @Table(name = "TB_USUARIO")
+@EntityListeners(AuditingEntityListener.class)
 public class Usuario {
     @GeneratedValue
     @Id
@@ -27,6 +31,9 @@ public class Usuario {
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private DetalhesUsuario detalhesUsuario;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedidos;
 
     public Usuario (CadastroUsuarioDto dto){
         nome = dto.nome();
