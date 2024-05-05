@@ -1,8 +1,11 @@
 package br.com.fiap.GerenciamentoPedido.controller;
 
+import br.com.fiap.GerenciamentoPedido.dto.pedido.CadastroPedidoDto;
+import br.com.fiap.GerenciamentoPedido.dto.pedido.DetalhesPedidoDto;
 import br.com.fiap.GerenciamentoPedido.dto.usuario.AtualizacaoUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.dto.usuario.CadastroUsuarioDto;
 import br.com.fiap.GerenciamentoPedido.dto.usuario.DetalhesUsuarioDto;
+import br.com.fiap.GerenciamentoPedido.model.Pedido;
 import br.com.fiap.GerenciamentoPedido.model.Usuario;
 import br.com.fiap.GerenciamentoPedido.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
@@ -67,4 +70,17 @@ public class UsuarioController {
         usuarioRepository.deleteById(idUsuario);
         return ResponseEntity.noContent().build();
     }
+
+    //post do pedido
+    @PostMapping("{id}/pedido")
+    @Transactional
+    public ResponseEntity<DetalhesPedidoDto> post(@PathVariable("id")Long idUsuario,
+                                                  @RequestBody @Valid CadastroPedidoDto dto,
+                                                  UriComponentsBuilder uriBuilder){
+        var usuario = usuarioRepository.getReferenceById(idUsuario);
+        var pedido = new Pedido(dto,usuario);
+        var uri = uriBuilder.path("pedido/{id}").buildAndExpand(pedido.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DetalhesPedidoDto(pedido));
+    }
+
 }
